@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Portofolioku</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVIGASI MENU -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MyPorto</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="about.html" class="active">👤 About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- KONTEN ABOUT -->
+    <main class="container">
+        <div class="about-grid">
+            <!-- Kartu Foto -->
+            <div class="card">
+                <h3>📷 Foto Profil</h3>
+                <div id="foto-about" class="foto-place"></div>
+            </div>
+
+            <!-- Kartu Profil -->
+            <div class="card">
+                <h3>👨‍🎓 Biodata</h3>
+                <div id="biodata"></div>
+            </div>
+
+            <!-- Kartu Tentang -->
+            <div class="card">
+                <h3>📖 Tentang Saya</h3>
+                <div id="tentang"></div>
+            </div>
+
+            <!-- Kartu Pendidikan -->
+            <div class="card">
+                <h3>🎓 Pendidikan</h3>
+                <div id="pendidikan"></div>
+            </div>
+
+            <!-- Kartu Minat -->
+            <div class="card">
+                <h3>💡 Minat</h3>
+                <div id="minat"></div>
+            </div>
+
+            <!-- Kartu Kontak -->
+            <div class="card">
+                <h3>📱 Kontak</h3>
+                <div id="kontak"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => {
+                // FOTO
+                if (data.profile.foto) {
+                    document.getElementById('foto-about').innerHTML = `<img src="${data.profile.foto}" class="foto-besar">`;
+                } else {
+                    document.getElementById('foto-about').innerHTML = `<div class="no-photo-besar">📷 Belum upload foto</div>`;
+                }
+                
+                // BIODATA
+                document.getElementById('biodata').innerHTML = `
+                    <p><strong>${data.profile.nama}</strong></p>
+                    <p>📋 ${data.profile.npm}</p>
+                    <p>🔬 ${data.profile.jurusan}</p>
+                    <p>🎓 ${data.profile.universitas}</p>
+                    <p>📅 Angkatan ${data.profile.angkatan}</p>
+                `;
+                
+                // TENTANG
+                document.getElementById('tentang').innerHTML = `<p>${data.tentang}</p>`;
+                
+                // PENDIDIKAN
+                let pendidikanHtml = '<ul>';
+                data.pendidikan.forEach(p => {
+                    pendidikanHtml += `<li><strong>${p.tahun}</strong><br>${p.sekolah}</li>`;
+                });
+                pendidikanHtml += '</ul>';
+                document.getElementById('pendidikan').innerHTML = pendidikanHtml;
+                
+                // MINAT
+                let minatHtml = '<div class="tag-group">';
+                data.minat.forEach(m => {
+                    minatHtml += `<span class="minat-tag">${m}</span>`;
+                });
+                minatHtml += '</div>';
+                document.getElementById('minat').innerHTML = minatHtml;
+                
+                // KONTAK
+                let kontakHtml = '';
+                data.kontak.forEach(k => {
+                    kontakHtml += `<p><strong>${k.platform}:</strong> ${k.link}</p>`;
+                });
+                document.getElementById('kontak').innerHTML = kontakHtml;
+            });
+    </script>
+</body>
+</html>

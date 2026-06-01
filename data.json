@@ -1,0 +1,52 @@
+{
+    "profile": {
+        "nama": "Itsna Fadillah Al Aziz",
+        "npm": "2417041023",
+        "jurusan": "Fisika",
+        "universitas": "Universitas Lampung",
+        "angkatan": "2024",
+        "foto": "foto/profil.jpg"
+    },
+    "tentang": "Halo! Saya Itsna, mahasiswa Fisika yang antusias memahami alam semesta. Saat ini saya mendalami komputasi fisika dan data science.",
+    "pendidikan": [
+        {
+            "tahun": "2024 - sekarang",
+            "sekolah": "S1 Fisika, Universitas Lampung"
+        },
+        {
+            "tahun": "2021 - 2024",
+            "sekolah": "SMA Negeri 1 Purbolinggo"
+        },
+        {
+            "tahun": "2018 - 2021",
+            "sekolah": "SMP Negeri 1 Purbolinggo"
+        }
+    ],
+    "skill": [
+        "Python",
+        "HTML/CSS",
+        "JavaScript",
+        "Analisis Data",
+        "Git & GitHub"
+    ],
+    "minat": [
+        "Astrofisika",
+        "Fisika Modern",
+        "Kuantum",
+        "Kecerdasan Buatan"
+    ],
+    "kontak": [
+        {
+            "platform": "Email",
+            "link": "2417041023@students.unila.ac.id"
+        },
+        {
+            "platform": "Instagram",
+            "link": "@itsna.alz"
+        },
+        {
+            "platform": "GitHub",
+            "link": "github.com/itsnafadillah"
+        }
+    ]
+}

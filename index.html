@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Portofolioku</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- NAVIGASI MENU -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MyPorto</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">🏠 Home</a></li>
+                <li><a href="about.html">👤 About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- KONTEN HOME -->
+    <main class="container">
+        <div class="hero">
+            <div class="avatar" id="avatar-home">
+                <!-- Foto akan muncul dari JSON -->
+            </div>
+            <h1 id="nama"></h1>
+            <p class="npm" id="npm"></p>
+            <p class="jurusan" id="jurusan"></p>
+            <a href="about.html" class="btn">Lihat Profil Lengkap →</a>
+        </div>
+
+        <div class="skills-section">
+            <h3>⚡ Skill & Tools</h3>
+            <div class="skill-list" id="skill-list"></div>
+        </div>
+    </main>
+
+    <script>
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => {
+                // Tampilkan nama
+                document.getElementById('nama').innerHTML = data.profile.nama;
+                // Tampilkan NPM
+                document.getElementById('npm').innerHTML = `📋 ${data.profile.npm}`;
+                // Tampilkan jurusan
+                document.getElementById('jurusan').innerHTML = `🔬 ${data.profile.jurusan} | 🎓 ${data.profile.universitas}`;
+                
+                // Tampilkan foto (kalau ada)
+                if (data.profile.foto) {
+                    document.getElementById('avatar-home').innerHTML = `<img src="${data.profile.foto}" alt="foto">`;
+                } else {
+                    document.getElementById('avatar-home').innerHTML = `<div class="no-photo">📷</div>`;
+                }
+                
+                // Tampilkan skill
+                let skillHtml = '';
+                data.skill.forEach(skill => {
+                    skillHtml += `<span class="skill-tag">${skill}</span>`;
+                });
+                document.getElementById('skill-list').innerHTML = skillHtml;
+            });
+    </script>
+</body>
+</html>
